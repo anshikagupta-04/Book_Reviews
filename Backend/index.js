@@ -1,6 +1,8 @@
 import connectDB from "./connectDB.js";
 import dotenv from "dotenv";
 import { Review } from "./models/review.models.js";
+import { User } from "./models/user.models.js";
+import { reviewControllers } from "./controllers/reviewControls.js";
 
 if (process.env.NODE_ENV != "production") {
     // require("dotenv").config({path: './.env'});
@@ -20,21 +22,13 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 })
 
-app.post('/review', async(req, res) => {
-    const bookTitle = req.body.bookTitle;
-    const author = req.body.author;
-    const review = req.body.review;
-    const by = req.body.by;
+app.post('/review', reviewControllers.fetchReview)
 
-    const rev = await Review.create({
-        bookTitle,
-        author,
-        review,
-        by
-    });
+app.get('/review', reviewControllers.getReview);
 
-    res.json({rev});
-})
+  app.post('/users', reviewControllers.fetchUser)
+
+app.get('/users', reviewControllers.getUser);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

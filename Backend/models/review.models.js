@@ -14,9 +14,8 @@ const reviewSchema = new mongoose.Schema({
         required: true
     },
     by: {
-        type: moongose.Schema.Types.ObjectId,
-        ref: "User"
+        type: String
     }
 },{timestamps: true});
 
-export const Review = moongose.model("Review",reviewSchema);
+export const Review = mongoose.model("Review",reviewSchema);
