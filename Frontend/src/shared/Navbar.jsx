@@ -8,16 +8,16 @@ const Navbar = () => {
         {path: 'SignUp', to: '/signup'},
     ];
   return (
-    <div className="absolute h-48 w-screen bg-slate-500 ">
-        <ul>
+    <div className=" h-30 w-screen bg-slate-500 flex-col justify-center items-center">
+        <div className="text-white m-5 text-base ">
             {
                 menuItems.map(item => (
-                    <li className="text-white m-5 text-base flex justify-center items-center" key={item.path }>
+                    <div  key={item.path }>
                         <Link to={item.to}>{item.path}</Link>
-                    </li>
+                    </div>
                 ))
             }
-        </ul>
+        </div>
     </div>
   )
 }

@@ -22,13 +22,13 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 })
 
-app.post('/review', reviewControllers.fetchReview)
+app.post('/api/review', reviewControllers.fetchReview)
 
-app.get('/review', reviewControllers.getReview);
+app.get('/api/review', reviewControllers.getReview);
 
-  app.post('/users', reviewControllers.fetchUser)
+  app.post('/api/users', reviewControllers.fetchUser)
 
-app.get('/users', reviewControllers.getUser);
+app.get('/api/users', reviewControllers.getUser);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
