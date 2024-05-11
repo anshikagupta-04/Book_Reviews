@@ -40,40 +40,48 @@ const Reviews = () => {
   };
 
   const createReview = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
-    //create review
-    const res = await axios.post("/api/review",  createForm);
+    //create review 
+    await axios.post("/api/review",  createForm)
+    .then(function(response){
+      setReview([...reviews, response.data.review]);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
 
     // update state
-    setReview([...reviews, res.data.review]);
+    // setReview([...reviews, res.data.review]);
 
     //reset from
-    setCreateForm({
-      bookTitle: "",
-      author: "",
-      review: "",
-      by: ""
-    });
+    // setCreateForm({
+    //   bookTitle: "",
+    //   author: "",
+    //   review: "",
+    //   by: ""
+    // });
   };
 
   return (
-    <div className="App">
-      <div>
+    <div className="App w-screen p-7 flex-row items-center justify-center">
+      <div className="flex-row items-center justify-center w-full">
         <h2>Reviews:</h2>
+        <div className="w-full flex-row justify-end items-end">
         {reviews &&
           reviews.map((review) => {
             return (
-              <div key={review._id}>
+              <div key={review._id} className=" border-4 my-3 grid border-slate-500 p-4">
                 <h3>Book Title: {review.bookTitle}</h3>
                 <p>Author: {review.author}</p>
                 <p>Review: {review.review}</p>
-                <p>By: {review.by}</p><br></br>
+                <p>Review By: {review.by}</p><br></br>
               </div>
             );
           })}
+          </div>
       </div>
-      {/* {updateForm._id && ( */}
+      <button>Add Review</button>
         <div>
           <h2>Update note</h2>
           <form onSubmit={createReview}>
@@ -100,7 +108,6 @@ const Reviews = () => {
             <button type="submit">Update note</button>
           </form>
         </div>
-      {/* )} */}
       </div>
   );
 }

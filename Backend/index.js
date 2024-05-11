@@ -26,7 +26,7 @@ app.post('/api/review', reviewControllers.fetchReview)
 
 app.get('/api/review', reviewControllers.getReview);
 
-  app.post('/api/users', reviewControllers.fetchUser)
+app.post('/api/users', reviewControllers.fetchUser)
 
 app.get('/api/users', reviewControllers.getUser);
 
