@@ -1,7 +1,5 @@
 import connectDB from "./connectDB.js";
 import dotenv from "dotenv";
-import { Review } from "./models/review.models.js";
-import { User } from "./models/user.models.js";
 import { reviewControllers } from "./controllers/reviewControls.js";
 import cookieParser from "cookie-parser";
 import { usersController } from "./controllers/usersController.js";
@@ -33,7 +31,7 @@ app.get("/api/logout", usersController.logout);
 
 app.get("/api/check-auth", requireAuth, usersController.checkAuth);
 
-app.post('/api/review', reviewControllers.fetchReview)
+app.post('/api/review', reviewControllers.createReview)
 
 app.get('/api/review', reviewControllers.getReview);
 

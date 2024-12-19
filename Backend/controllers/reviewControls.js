@@ -1,6 +1,7 @@
 import { Review } from "../models/review.models.js";
+import { User } from "../models/user.models.js";
 
-const fetchReview = async(req, res) => {
+const createReview = async(req, res) => {
     const bookTitle = req.body.bookTitle;
     const author = req.body.author;
     const review = req.body.review;
@@ -47,7 +48,7 @@ const getUser = async (req, res) => {
   }
 
 export const reviewControllers = {
-    fetchReview,
+    createReview,
     getReview,
     fetchUser,
     getUser

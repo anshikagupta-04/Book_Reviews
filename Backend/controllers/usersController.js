@@ -1,6 +1,9 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {User} from "../models/user.models.js";
+// import dotenv from 'dotenv';
+
+// dotenv.config();
 
 async function signup(req, res) {
   try {
@@ -19,7 +22,7 @@ async function signup(req, res) {
 
 async function login(req, res) {
   try {
-    const { username, email, password } = req.body;
+    const { email, password } = req.body;    
 
     const user = await User.findOne({ email });
     if (!user) return res.sendStatus(401);
