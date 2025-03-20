@@ -19,17 +19,6 @@ const Reviews = () => {
   const [book, setBook] = useState([])
 
   const [imageLink, setLink] = useState() //book[1].volumeInfo.imageLinks.thumnail
-  useEffect(() => {
-    axios.get(
-      "https://www.googleapis.com/books/v1/volumes?q=" + "rich_dad_poor_dad" + "&key=AIzaSyC1qBGvjNbjCGABmZhpkIfO0JmVM1cRKvk" + "&maxResults=20"
-    )
-      .then((res) => {
-        setBook(res.data.items),
-        setLink(res.data.items[1].volumeInfo.imageLinks.thumbnail)
-      })
-      .catch((err) => console.log(err));
-    fetchReviews();
-  }, []);
 
   // console.log(book[1]);
 
@@ -50,13 +39,7 @@ const Reviews = () => {
     });
   };
 
-  const searchBook = async (book) => {
-    await axios.get(
-      "https://www.googleapis.com/books/v1/volumes?q=" + book + "&key=AIzaSyC1qBGvjNbjCGABmZhpkIfO0JmVM1cRKvk" + "&maxResults=20"
-    )
-      .then((res) => console.log(setBookData(res.data.items)))
-      .catch((err) => console.log(err));
-  }
+
 
   const createReview = async (e) => {
     // e.preventDefault();
