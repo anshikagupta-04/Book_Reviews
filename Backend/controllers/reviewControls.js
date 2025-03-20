@@ -5,7 +5,7 @@ const createReview = async (req, res) => {
     const bookId = req.body.bookId;
     const rating = req.body.rating;
     const review = req.body.review;
-    const by = req.body.by;
+    const by = req.user._id;
 
     const rev = await Review.create({
         bookId,
@@ -37,7 +37,7 @@ const getReview = async (req, res) => {
 
 const toggleLikeDislike = async (req, res) => {
     try {
-        const { reviewId } = req.params;
+        const { reviewId, action } = req.body;
         const userId = req.user._id;
 
         const review = await Review.findById(reviewId);
@@ -49,7 +49,7 @@ const toggleLikeDislike = async (req, res) => {
         const likedIndex = review.likes.indexOf(userId);
         const dislikedIndex = review.dislikes.indexOf(userId);
 
-        if (req.body.action === "like") {
+        if (action === "like") {
             if (likedIndex === -1) {
                 review.likes.push(userId); // Add like
             } else {
@@ -58,7 +58,7 @@ const toggleLikeDislike = async (req, res) => {
             if (dislikedIndex !== -1) {
                 review.dislikes.splice(dislikedIndex, 1); // Remove from dislikes if present
             }
-        } else if (req.body.action === "dislike") {
+        } else if (action === "dislike") {
             if (dislikedIndex === -1) {
                 review.dislikes.push(userId); // Add dislike
             } else {

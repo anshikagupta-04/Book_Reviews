@@ -31,7 +31,7 @@ app.get("/api/logout", usersController.logout);
 
 app.get("/api/check-auth", requireAuth, usersController.checkAuth);
 
-app.post('/api/review', reviewControllers.createReview)
+app.post('/api/review', requireAuth, reviewControllers.createReview)
 
 app.get('/api/review', reviewControllers.getReview);
 
@@ -39,7 +39,7 @@ app.get('/api/review', reviewControllers.getReview);
 
 // app.get('/api/users', reviewControllers.getUser);
 
-app.put('/api/review/:reviewId/like-dislike', requireAuth, reviewControllers.toggleLikeDislike);
+app.put('/api/review/like-dislike', requireAuth, reviewControllers.toggleLikeDislike);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

@@ -9,8 +9,6 @@ if (process.env.NODE_ENV != "production") {
 
 async function requireAuth(req, res, next) {
   try {
-    console.log(req.headers);
-
     let token = req.header('Authorization')?.split(' ')[1]; // Try to get from header
 
     if (!token) {
