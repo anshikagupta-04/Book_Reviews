@@ -35,7 +35,7 @@ const Login = () => {
     })
   }
 
-  return (
+  return (!isLoggedIn) && (
     <div>
       <form onSubmit={loggingin}>
         <label htmlFor="">What should we call you?</label>

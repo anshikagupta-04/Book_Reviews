@@ -8,7 +8,7 @@ if (process.env.NODE_ENV != "production") {
 
 async function requireAuth(req, res, next) {
   try {
-    const token = req.cookies.Authorization;
+    const token = req.header('Authorization');
 
     const decoded = jwt.verify(token, process.env.SECRET);
 
