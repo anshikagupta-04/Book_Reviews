@@ -22,19 +22,20 @@ async function signup(req, res) {
 
 async function login(req, res) {
   try {
-    const { email, password } = req.body;    
-
-    const user = await User.findOne({ email });
-    if (!user) return res.sendStatus(401);
-
+    const { email, password } = req.body;
+    
     const usermail = await User.findOne({ email });
     if (!usermail) return res.sendStatus(401);
+    // console.log(usermail);
 
     const passwordMatch = bcrypt.compareSync(password, usermail.password);
+    // console.log(passwordMatch);    
     if (!passwordMatch) return res.sendStatus(401);
 
     const exp = Date.now() + 1000 * 60 * 60 * 24 * 30;
     const token = jwt.sign({ sub: usermail._id, exp }, process.env.SECRET);
+    // console.log(token);
+    
 
     res.cookie("Authorization", token, {
       expires: new Date(exp),

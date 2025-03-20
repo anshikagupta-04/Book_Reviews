@@ -35,9 +35,11 @@ app.post('/api/review', reviewControllers.createReview)
 
 app.get('/api/review', reviewControllers.getReview);
 
-app.post('/api/users', reviewControllers.fetchUser)
+// app.post('/api/users', reviewControllers.fetchUser)
 
-app.get('/api/users', reviewControllers.getUser);
+// app.get('/api/users', reviewControllers.getUser);
+
+app.put('/api/review/:reviewId/like-dislike', requireAuth, reviewControllers.toggleLikeDislike);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
